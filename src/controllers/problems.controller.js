@@ -1,3 +1,7 @@
+function checkPath(req, res) {
+  return res.json({ message: "Checking request path" });
+}
+
 function addProblems(req, res) {}
 
 function getProblems(req, res) {}
@@ -14,4 +18,5 @@ module.exports = {
   getProblems,
   updateProblem,
   deleteProblem,
+  checkPath,
 };

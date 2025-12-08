@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.text());
 
+// Routes
+const v1ProblemRoute = require("./routes/index");
+app.use("/api", v1ProblemRoute);
+
 // Server
 app.listen(PORT, () => {
   console.log(`Server listening to Port:${PORT}`);
