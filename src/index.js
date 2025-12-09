@@ -13,12 +13,13 @@ app.use(express.text());
 
 // Routes
 const v1ProblemRoute = require("./routes/index");
-const BaseError = require("./errors/base.error");
 app.use("/api", v1ProblemRoute);
+
+// Error Handler Middleware
+const errorHandler = require("./utils/errorHandler.utils");
+app.use(errorHandler);
 
 // Server
 app.listen(PORT, () => {
   console.log(`Server listening to Port:${PORT}`);
-
-  throw new BaseError("Bad Request", 400, "Something went wrong");
 });
