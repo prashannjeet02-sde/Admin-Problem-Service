@@ -1,12 +1,25 @@
-const NotImplemented = require("../errors/notImplemented.error");
+const { ProblemService } = require("../service/index");
+const { ProblemRepo } = require("../repositories/index");
+const { StatusCodes } = require("http-status-codes");
 
+const problemService = new ProblemService(new ProblemRepo());
+
+/** Checking if controller is working or not */
 function checkPath(req, res) {
   return res.json({ message: "Checking request path" });
 }
 
-function addProblems(req, res, next) {
+/** Controller to add Problem */
+async function addProblems(req, res, next) {
   try {
-    throw new NotImplemented("add Problems not implemented");
+    const newProblem = await problemService.createProblem(req.body);
+
+    return res.status(StatusCodes.CREATED).json({
+      success: true,
+      message: "New Problem Created",
+      error: {},
+      data: newProblem,
+    });
   } catch (error) {
     next(error);
   }

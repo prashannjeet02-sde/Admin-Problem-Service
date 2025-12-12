@@ -3,11 +3,13 @@ const { ProblemModel } = require("../models/index");
 class ProblemRepository {
   async createProblem(problemData) {
     try {
-      const problem = await ProblemModel.create({
+      const newProblem = await ProblemModel.create({
         title: problemData.title,
         description: problemData.description,
+        testCases: problemData.testCases ? testCases : [],
       });
-      return problem;
+
+      return newProblem;
     } catch (error) {
       console.log(error);
       throw error;
