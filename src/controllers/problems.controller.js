@@ -40,11 +40,33 @@ async function getProblems(req, res, next) {
   }
 }
 
-function getProblem(req, res, next) {}
+async function getProblem(req, res, next) {
+  try {
+    const problem = await problemService.fetchProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      error: {},
+      data: problem,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 function updateProblem(req, res, next) {}
 
-function deleteProblem(req, res, next) {}
+async function deleteProblem(req, res, next) {
+  try {
+    const problem = await problemService.removeProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Problem Deleted",
+      error: {},
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   addProblems,

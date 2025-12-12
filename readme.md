@@ -16,3 +16,7 @@ It holds queries related to database.
 # Service
 
 It holds business logics.
+
+## Flow of code through layers
+
+routes-->controller-->service-->repository

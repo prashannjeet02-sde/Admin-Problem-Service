@@ -18,7 +18,7 @@ function sanitizeProblemData(data) {
   const markedData = marked.parse(data);
 
   const sanitizeData = sanitizeHtml(markedData, {
-    allowedTags: sanitizeHtml.defaults.allowedTags,
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat("img"),
   });
 
   const turndownData = turndownService.turndown(sanitizeData);
