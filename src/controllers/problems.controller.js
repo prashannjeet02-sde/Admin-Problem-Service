@@ -25,7 +25,20 @@ async function addProblems(req, res, next) {
   }
 }
 
-function getProblems(req, res, next) {}
+/** Controller to fetch all problems */
+async function getProblems(req, res, next) {
+  try {
+    const getProblems = await problemService.fetchAllProblems();
+
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      error: {},
+      data: getProblems,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 function getProblem(req, res, next) {}
 
